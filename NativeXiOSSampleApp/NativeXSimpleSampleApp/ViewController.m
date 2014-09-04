@@ -19,7 +19,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    //Sample App Specific Code:
+    //Sample App Specific Code: this sets the buttons to disabled until an ad is ready to show
     if(![[NativeXSDK sharedInstance] isAdReadyWithPlacement:kAdPlacementGameLaunch]){
         self.gameLaunch.enabled = NO;
         self.gameLaunch.alpha = .5f;

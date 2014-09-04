@@ -17,9 +17,10 @@
     // This is needed to receive and handle NativeX callbacks.
     [[NativeXSDK sharedInstance] setDelegate:self];
     
-    // The AppID is obtained from the NativeX Self Service site at selfservice.nativex.com
+    // The AppID is obtained from the NativeX Self Service site at https://selfservice.nativex.com
             // Sample App Note: It can take up to 15 minutes for the system to update your ID
             // Sample App Note: If you replace this sample AppID with your own, the ads shown may not reflect the media type noted on the button
+    // View this Sample App's activity on https://selfservice.nativex.com. User Name: nativexsampleapp@gmail.com Password:appDevelopersR0ck!
     NSString *appId = @"20910";
     
     // Initialize
