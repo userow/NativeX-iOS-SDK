@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E362E6B19CA4AFA0096250A /* libNativeXSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E362E6319CA4AFA0096250A /* libNativeXSDK.a */; };
+		0EB60F4C19F191F100BB9D18 /* libNativeXSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EB60F4419F191F100BB9D18 /* libNativeXSDK.a */; };
 		CD511CBA19A7BC0400D3793A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CB919A7BC0400D3793A /* Foundation.framework */; };
 		CD511CBC19A7BC0400D3793A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CBB19A7BC0400D3793A /* CoreGraphics.framework */; };
 		CD511CBE19A7BC0400D3793A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CBD19A7BC0400D3793A /* UIKit.framework */; };
@@ -42,13 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E362E6319CA4AFA0096250A /* libNativeXSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNativeXSDK.a; sourceTree = "<group>"; };
-		0E362E6519CA4AFA0096250A /* NativeXAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXAdView.h; sourceTree = "<group>"; };
-		0E362E6619CA4AFA0096250A /* NativeXCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXCurrency.h; sourceTree = "<group>"; };
-		0E362E6719CA4AFA0096250A /* NativeXInAppPurchaseTrackRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXInAppPurchaseTrackRecord.h; sourceTree = "<group>"; };
-		0E362E6819CA4AFA0096250A /* NativeXInAppPurchaseTrackRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXInAppPurchaseTrackRequest.h; sourceTree = "<group>"; };
-		0E362E6919CA4AFA0096250A /* NativeXRedeemedCurrencyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXRedeemedCurrencyInfo.h; sourceTree = "<group>"; };
-		0E362E6A19CA4AFA0096250A /* NativeXSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXSDK.h; sourceTree = "<group>"; };
+		0EB60F4419F191F100BB9D18 /* libNativeXSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNativeXSDK.a; sourceTree = "<group>"; };
+		0EB60F4619F191F100BB9D18 /* NativeXAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXAdView.h; sourceTree = "<group>"; };
+		0EB60F4719F191F100BB9D18 /* NativeXCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXCurrency.h; sourceTree = "<group>"; };
+		0EB60F4819F191F100BB9D18 /* NativeXInAppPurchaseTrackRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXInAppPurchaseTrackRecord.h; sourceTree = "<group>"; };
+		0EB60F4919F191F100BB9D18 /* NativeXInAppPurchaseTrackRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXInAppPurchaseTrackRequest.h; sourceTree = "<group>"; };
+		0EB60F4A19F191F100BB9D18 /* NativeXRedeemedCurrencyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXRedeemedCurrencyInfo.h; sourceTree = "<group>"; };
+		0EB60F4B19F191F100BB9D18 /* NativeXSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXSDK.h; sourceTree = "<group>"; };
 		CD511CB619A7BC0400D3793A /* NativeXSimpleSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NativeXSimpleSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD511CB919A7BC0400D3793A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CD511CBB19A7BC0400D3793A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -86,7 +86,7 @@
 				CD511D0319A7BD5600D3793A /* libsqlite3.0.dylib in Frameworks */,
 				CD511D0419A7BD5600D3793A /* MediaPlayer.framework in Frameworks */,
 				CD511D0519A7BD5600D3793A /* MessageUI.framework in Frameworks */,
-				0E362E6B19CA4AFA0096250A /* libNativeXSDK.a in Frameworks */,
+				0EB60F4C19F191F100BB9D18 /* libNativeXSDK.a in Frameworks */,
 				CD511D0619A7BD5600D3793A /* StoreKit.framework in Frameworks */,
 				CD511D0719A7BD5600D3793A /* SystemConfiguration.framework in Frameworks */,
 				CD511CBC19A7BC0400D3793A /* CoreGraphics.framework in Frameworks */,
@@ -108,24 +108,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E362E6219CA4AFA0096250A /* NativeXiOSSDK-5.3.4 */ = {
+		0EB60F4319F191F100BB9D18 /* NativeXiOSSDK-5.3.6 */ = {
 			isa = PBXGroup;
 			children = (
-				0E362E6319CA4AFA0096250A /* libNativeXSDK.a */,
-				0E362E6419CA4AFA0096250A /* NativeXSDKHeaders */,
+				0EB60F4419F191F100BB9D18 /* libNativeXSDK.a */,
+				0EB60F4519F191F100BB9D18 /* NativeXSDKHeaders */,
 			);
-			path = "NativeXiOSSDK-5.3.4";
+			path = "NativeXiOSSDK-5.3.6";
 			sourceTree = "<group>";
 		};
-		0E362E6419CA4AFA0096250A /* NativeXSDKHeaders */ = {
+		0EB60F4519F191F100BB9D18 /* NativeXSDKHeaders */ = {
 			isa = PBXGroup;
 			children = (
-				0E362E6519CA4AFA0096250A /* NativeXAdView.h */,
-				0E362E6619CA4AFA0096250A /* NativeXCurrency.h */,
-				0E362E6719CA4AFA0096250A /* NativeXInAppPurchaseTrackRecord.h */,
-				0E362E6819CA4AFA0096250A /* NativeXInAppPurchaseTrackRequest.h */,
-				0E362E6919CA4AFA0096250A /* NativeXRedeemedCurrencyInfo.h */,
-				0E362E6A19CA4AFA0096250A /* NativeXSDK.h */,
+				0EB60F4619F191F100BB9D18 /* NativeXAdView.h */,
+				0EB60F4719F191F100BB9D18 /* NativeXCurrency.h */,
+				0EB60F4819F191F100BB9D18 /* NativeXInAppPurchaseTrackRecord.h */,
+				0EB60F4919F191F100BB9D18 /* NativeXInAppPurchaseTrackRequest.h */,
+				0EB60F4A19F191F100BB9D18 /* NativeXRedeemedCurrencyInfo.h */,
+				0EB60F4B19F191F100BB9D18 /* NativeXSDK.h */,
 			);
 			path = NativeXSDKHeaders;
 			sourceTree = "<group>";
@@ -133,7 +133,7 @@
 		CD511CAD19A7BC0400D3793A = {
 			isa = PBXGroup;
 			children = (
-				0E362E6219CA4AFA0096250A /* NativeXiOSSDK-5.3.4 */,
+				0EB60F4319F191F100BB9D18 /* NativeXiOSSDK-5.3.6 */,
 				CD511CBF19A7BC0400D3793A /* NativeXSimpleSampleApp */,
 				CD511CE119A7BC0400D3793A /* NativeXSimpleSampleAppTests */,
 				CD511CB819A7BC0400D3793A /* Frameworks */,
@@ -451,7 +451,7 @@
 				INFOPLIST_FILE = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/NativeXiOSSDK-5.3.4",
+					"$(PROJECT_DIR)/NativeXiOSSDK-5.3.6",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -468,7 +468,7 @@
 				INFOPLIST_FILE = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/NativeXiOSSDK-5.3.4",
+					"$(PROJECT_DIR)/NativeXiOSSDK-5.3.6",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
