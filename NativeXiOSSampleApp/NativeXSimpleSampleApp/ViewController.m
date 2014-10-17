@@ -37,6 +37,7 @@
         self.storeOpen.alpha = .5f;
     }
     
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 -(void)adIsReadyWithPlacement:(NSString *)placement{
