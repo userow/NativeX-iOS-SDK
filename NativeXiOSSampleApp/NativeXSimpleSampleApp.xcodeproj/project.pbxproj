@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0EEC7C301A310DD80077659E /* libNativeXSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEC7C281A310DD80077659E /* libNativeXSDK.a */; };
+		5F029FED1A44CC090073F5C9 /* libNativeXSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F029FE51A44CC090073F5C9 /* libNativeXSDK.a */; };
 		5FE12DEB19DDC371007087CF /* whiteeyes_la_plume.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5FE12DEA19DDC371007087CF /* whiteeyes_la_plume.mp3 */; };
 		CD511CBA19A7BC0400D3793A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CB919A7BC0400D3793A /* Foundation.framework */; };
 		CD511CBC19A7BC0400D3793A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CBB19A7BC0400D3793A /* CoreGraphics.framework */; };
@@ -43,13 +43,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0EEC7C281A310DD80077659E /* libNativeXSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNativeXSDK.a; sourceTree = "<group>"; };
-		0EEC7C2A1A310DD80077659E /* NativeXAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXAdView.h; sourceTree = "<group>"; };
-		0EEC7C2B1A310DD80077659E /* NativeXCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXCurrency.h; sourceTree = "<group>"; };
-		0EEC7C2C1A310DD80077659E /* NativeXInAppPurchaseTrackRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXInAppPurchaseTrackRecord.h; sourceTree = "<group>"; };
-		0EEC7C2D1A310DD80077659E /* NativeXInAppPurchaseTrackRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXInAppPurchaseTrackRequest.h; sourceTree = "<group>"; };
-		0EEC7C2E1A310DD80077659E /* NativeXRedeemedCurrencyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXRedeemedCurrencyInfo.h; sourceTree = "<group>"; };
-		0EEC7C2F1A310DD80077659E /* NativeXSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXSDK.h; sourceTree = "<group>"; };
+		5F029FE51A44CC090073F5C9 /* libNativeXSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNativeXSDK.a; sourceTree = "<group>"; };
+		5F029FE71A44CC090073F5C9 /* NativeXAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXAdView.h; sourceTree = "<group>"; };
+		5F029FE81A44CC090073F5C9 /* NativeXCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXCurrency.h; sourceTree = "<group>"; };
+		5F029FE91A44CC090073F5C9 /* NativeXInAppPurchaseTrackRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXInAppPurchaseTrackRecord.h; sourceTree = "<group>"; };
+		5F029FEA1A44CC090073F5C9 /* NativeXInAppPurchaseTrackRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXInAppPurchaseTrackRequest.h; sourceTree = "<group>"; };
+		5F029FEB1A44CC090073F5C9 /* NativeXRedeemedCurrencyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXRedeemedCurrencyInfo.h; sourceTree = "<group>"; };
+		5F029FEC1A44CC090073F5C9 /* NativeXSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXSDK.h; sourceTree = "<group>"; };
 		5FE12DEA19DDC371007087CF /* whiteeyes_la_plume.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = whiteeyes_la_plume.mp3; sourceTree = "<group>"; };
 		CD511CB619A7BC0400D3793A /* NativeXSimpleSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NativeXSimpleSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD511CB919A7BC0400D3793A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -88,7 +88,7 @@
 				CD511D0319A7BD5600D3793A /* libsqlite3.0.dylib in Frameworks */,
 				CD511D0419A7BD5600D3793A /* MediaPlayer.framework in Frameworks */,
 				CD511D0519A7BD5600D3793A /* MessageUI.framework in Frameworks */,
-				0EEC7C301A310DD80077659E /* libNativeXSDK.a in Frameworks */,
+				5F029FED1A44CC090073F5C9 /* libNativeXSDK.a in Frameworks */,
 				CD511D0619A7BD5600D3793A /* StoreKit.framework in Frameworks */,
 				CD511D0719A7BD5600D3793A /* SystemConfiguration.framework in Frameworks */,
 				CD511CBC19A7BC0400D3793A /* CoreGraphics.framework in Frameworks */,
@@ -110,24 +110,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0EEC7C271A310DD80077659E /* NativeXiOSSDK-5.4.0 */ = {
+		5F029FE41A44CC090073F5C9 /* NativeXiOSSDK-5.4.1 */ = {
 			isa = PBXGroup;
 			children = (
-				0EEC7C281A310DD80077659E /* libNativeXSDK.a */,
-				0EEC7C291A310DD80077659E /* NativeXSDKHeaders */,
+				5F029FE51A44CC090073F5C9 /* libNativeXSDK.a */,
+				5F029FE61A44CC090073F5C9 /* NativeXSDKHeaders */,
 			);
-			path = "NativeXiOSSDK-5.4.0";
+			path = "NativeXiOSSDK-5.4.1";
 			sourceTree = "<group>";
 		};
-		0EEC7C291A310DD80077659E /* NativeXSDKHeaders */ = {
+		5F029FE61A44CC090073F5C9 /* NativeXSDKHeaders */ = {
 			isa = PBXGroup;
 			children = (
-				0EEC7C2A1A310DD80077659E /* NativeXAdView.h */,
-				0EEC7C2B1A310DD80077659E /* NativeXCurrency.h */,
-				0EEC7C2C1A310DD80077659E /* NativeXInAppPurchaseTrackRecord.h */,
-				0EEC7C2D1A310DD80077659E /* NativeXInAppPurchaseTrackRequest.h */,
-				0EEC7C2E1A310DD80077659E /* NativeXRedeemedCurrencyInfo.h */,
-				0EEC7C2F1A310DD80077659E /* NativeXSDK.h */,
+				5F029FE71A44CC090073F5C9 /* NativeXAdView.h */,
+				5F029FE81A44CC090073F5C9 /* NativeXCurrency.h */,
+				5F029FE91A44CC090073F5C9 /* NativeXInAppPurchaseTrackRecord.h */,
+				5F029FEA1A44CC090073F5C9 /* NativeXInAppPurchaseTrackRequest.h */,
+				5F029FEB1A44CC090073F5C9 /* NativeXRedeemedCurrencyInfo.h */,
+				5F029FEC1A44CC090073F5C9 /* NativeXSDK.h */,
 			);
 			path = NativeXSDKHeaders;
 			sourceTree = "<group>";
@@ -135,6 +135,7 @@
 		CD511CAD19A7BC0400D3793A = {
 			isa = PBXGroup;
 			children = (
+				5F029FE41A44CC090073F5C9 /* NativeXiOSSDK-5.4.1 */,
 				CD511CBF19A7BC0400D3793A /* NativeXSimpleSampleApp */,
 				CD511CE119A7BC0400D3793A /* NativeXSimpleSampleAppTests */,
 				CD511CB819A7BC0400D3793A /* Frameworks */,
@@ -171,7 +172,6 @@
 		CD511CBF19A7BC0400D3793A /* NativeXSimpleSampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				0EEC7C271A310DD80077659E /* NativeXiOSSDK-5.4.0 */,
 				CD511CC819A7BC0400D3793A /* AppDelegate.h */,
 				CD511CC919A7BC0400D3793A /* AppDelegate.m */,
 				CD511CCB19A7BC0400D3793A /* Main_iPhone.storyboard */,
@@ -261,6 +261,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = NativeX;
 				TargetAttributes = {
+					CD511CB519A7BC0400D3793A = {
+						DevelopmentTeam = W253CBCGVS;
+					};
 					CD511CD919A7BC0400D3793A = {
 						TestTargetID = CD511CB519A7BC0400D3793A;
 					};
@@ -450,14 +453,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Prefix.pch";
 				INFOPLIST_FILE = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NativeXSimpleSampleApp/NativeXiOSSDK-5.4.0",
+					"$(PROJECT_DIR)/NativeXiOSSDK-5.4.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -467,14 +474,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Prefix.pch";
 				INFOPLIST_FILE = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NativeXSimpleSampleApp/NativeXiOSSDK-5.4.0",
+					"$(PROJECT_DIR)/NativeXiOSSDK-5.4.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
