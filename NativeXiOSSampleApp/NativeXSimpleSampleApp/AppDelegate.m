@@ -14,11 +14,11 @@
 @end
 
 @implementation AppDelegate
-        // Sample App Note: If you receive the "'nativeXSDKDidRedeemWithCurrencyInfo:' in protocol not implemented" error, this means you did not add the currency redemption method. The code for this is below. Even if you don't plan to have any rewarded placements, we highly recommend you add this so you can quickly turn it on via our Self Service site without having to update your app and re-submit.
+        // Sample App Note: If you receive the "'nativeXSDKDidRedeemWithRewardInfo:' in protocol not implemented" error, this means you did not add the currency redemption method. The code for this is below. Even if you don't plan to have any rewarded placements, we highly recommend you add this so you can quickly turn it on via our Self Service site without having to update your app and re-submit.
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.view = self.window.rootViewController;
+    self.view = (ViewController*)self.window.rootViewController;
     // This is needed to receive and handle NativeX callbacks.
     [[NativeXSDK sharedInstance] setDelegate:self];
     
@@ -129,14 +129,14 @@
     }
 }
 
-- (void) nativeXSDKDidRedeemWithCurrencyInfo:(NativeXRedeemedCurrencyInfo *)redeemedCurrencyInfo {
-    // Add code to handle the currency info and credit your user here
-    NSLog(@"Messages: %@", redeemedCurrencyInfo.messages);
-    NSLog(@"Redeemed: %@", redeemedCurrencyInfo.balances.description);
-    NSLog(@"Redeem Receipts: %@", redeemedCurrencyInfo.receipts);
-    
-    // Show generic successful redemption alert
-    [redeemedCurrencyInfo showRedeemAlert];
+- (void) nativeXSDKDidRedeemWithRewardInfo:(NativeXRewardInfo *)rewardInfo {
+    // add the code to handle the currency info and credit your user here
+    int totalRewardAmount = 0;
+    for (NativeXReward *reward in rewardInfo.rewards) {
+        NSLog(@"Reward: rewardName:%@ rewardId:%@ amount:%@", reward.rewardName, reward.rewardId, reward.amount);
+        // grab the amount and add it to total
+        totalRewardAmount += [reward.amount intValue];
+    }
 }
 
 - (void)nativeXSDKDidRedeemWithError:(NSError *)error {
