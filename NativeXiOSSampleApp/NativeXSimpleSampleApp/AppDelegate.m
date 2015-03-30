@@ -137,6 +137,7 @@
         // grab the amount and add it to total
         totalRewardAmount += [reward.amount intValue];
     }
+    [rewardInfo showRedeemAlert];
 }
 
 - (void)nativeXSDKDidRedeemWithError:(NSError *)error {
