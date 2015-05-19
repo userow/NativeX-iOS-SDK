@@ -46,7 +46,7 @@
         return;
     }
 
-    [[NativeXSDK sharedInstance] showReadyAdStatelessWithCustomPlacement:_nativeXplacement delegate:self];
+    [[NativeXSDK sharedInstance] showReadyAdStatelessWithCustomPlacement:_nativeXplacement delegate:self rootViewController:rootViewController];
 }
 
 #pragma mark NativeXAdViewDelegate
