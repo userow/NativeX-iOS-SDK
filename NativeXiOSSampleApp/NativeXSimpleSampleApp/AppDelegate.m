@@ -129,6 +129,11 @@
     }
 }
 
+- (void)nativeXAdViewAdConverted:(NSString*) placementName {
+    // called when the ad has converted, and rewards will be rewarded
+    NSLog(@"Ad has converted: %@", placementName);
+}
+
 - (void) nativeXSDKDidRedeemWithRewardInfo:(NativeXRewardInfo *)rewardInfo {
     // add the code to handle the currency info and credit your user here
     int totalRewardAmount = 0;
