@@ -2,13 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "storeOpenVideo_hilite.png"
+      "filename" : "storeOpenVideo_hilite.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "storeOpenVideo_hilite-1.png"
+      "filename" : "storeOpenVideo_hilite-1.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
