@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6D95832C804F476F13BE97CB968374463ECACC10",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6D95832C804F476F13BE97CB968374463ECACC10" : 0,
+    "95EAF2344EC14DEF04612318D6D1B7BF9B544DAE" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5770DA3E-6D41-489F-9A30-DE683543E796",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6D95832C804F476F13BE97CB968374463ECACC10" : "NativeX-iOS-SDK",
+    "95EAF2344EC14DEF04612318D6D1B7BF9B544DAE" : "iOS-SDK-Source"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "NativeXSimpleSampleApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "NativeXiOSSampleApp\/NativeXSimpleSampleApp.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:nativex\/NativeX-iOS-SDK.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6D95832C804F476F13BE97CB968374463ECACC10"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:nativex\/iOS-SDK-Source.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95EAF2344EC14DEF04612318D6D1B7BF9B544DAE"
+    }
+  ]
+}
