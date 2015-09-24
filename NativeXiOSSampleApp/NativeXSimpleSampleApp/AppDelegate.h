@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "NativeXSDK.h"
 #import "ViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, NativeXSDKDelegate, NativeXAdViewDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, NativeXSDKDelegate, NativeXAdEventDelegate, NativeXRewardDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ViewController *view;
+
+@property (nonatomic, strong) AVAudioPlayer* musicPlayer;
 
 @end

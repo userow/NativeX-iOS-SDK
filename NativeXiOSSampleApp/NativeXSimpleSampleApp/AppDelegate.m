@@ -7,29 +7,53 @@
 //
 
 #import "AppDelegate.h"
-#import <AVFoundation/AVFoundation.h>
+
 
 @interface AppDelegate()
-    @property (nonatomic, strong) AVAudioPlayer* musicPlayer;
+@property (nonatomic)   int totalRewardsCollected;
 @end
 
 @implementation AppDelegate
-        // Sample App Note: If you receive the "'nativeXSDKDidRedeemWithRewardInfo:' in protocol not implemented" error, this means you did not add the currency redemption method. The code for this is below. Even if you don't plan to have any rewarded placements, we highly recommend you add this so you can quickly turn it on via our Self Service site without having to update your app and re-submit.
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.view = (ViewController*)self.window.rootViewController;
     // This is needed to receive and handle NativeX callbacks.
-    [[NativeXSDK sharedInstance] setDelegate:self];
     
     // The AppID is obtained from the NativeX Self Service site at https://selfservice.nativex.com
-            // Sample App Note: It can take up to 15 minutes for the system to update your ID
-            // Sample App Note: If you replace this sample AppID with your own, the ads shown may not reflect the media type noted on the button
+    // Sample App Note: It can take up to 15 minutes for the system to update your ID
+    // Sample App Note: If you replace this sample AppID with your own, the ads shown may not reflect the media type noted on the button
+
     // View this Sample App's activity on https://selfservice.nativex.com. User Name: nativexsampleapp@gmail.com Password:appDevelopersR0ck!
     NSString *appId = @"20910";
     
-    // Initialize
-    [[NativeXSDK sharedInstance] createSessionWithAppId:appId];
+    // Debug logging!! uncomment this line to enable debug logging within the NativeX SDK
+    // WARNING: Make sure debug logging is turned off when submitting your app to the App Store!!!
+    [NativeXSDK enableDebugLog:YES];
+    
+    // Initialize.. setting this object as the SDK delegate and the Reward delegate
+    [NativeXSDK initializeWithAppId:appId andSDKDelegate:self andRewardDelegate:self];
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Sample App Note: Managing Fetches                                                                                    //
+    //                                                                                                                      //
+    // You need to fetch an ad before every showAd call; you can either call fetch directly for every placement,            //
+    // or you can set the placements to autofetch (like below).                                                             //
+    // Be sure to fetch early enough for the ad to load before it is needed to be shown.                                    //
+    // If manually fetching, and if it is likely a user will request an ad more than once per scene,                        //
+    // you may want to place a fetch in the ad dismiss.                                                                     //
+    // If an ad is set to autofetch, ads will be fetched automatically after dismiss                                        //
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    // Sample App Note: I've added all ad fetches here because I only have a one-scene app, you typically want to only fetch one ad at a time.
+    // Sample App Note: Click the Store Open button and nothing happened? It could be that the ad didn't finish loading yet. Try clicking again in a few seconds
+    
+    // Since ads are set to fetch automatically, they will be fetched immediately after SDK is initialized!
+
+    [NativeXSDK fetchAdsAutomaticallyWithPlacement:kAdPlacementStoreOpen andFetchDelegate:self];
+    [NativeXSDK fetchAdsAutomaticallyWithPlacement:kAdPlacementMainMenuScreen andFetchDelegate:self];
+    [NativeXSDK fetchAdsAutomaticallyWithPlacement:kAdPlacementGameLaunch andFetchDelegate:self];
+    [NativeXSDK fetchAdsAutomaticallyWithPlacement:kAdPlacementLevelFailed andFetchDelegate:self];
     
     // set up the music player
     // La Plume by Whiteyes, CC 3.0 BY-NC-ND
@@ -42,6 +66,8 @@
     self.musicPlayer.numberOfLoops = -1;
     
     [self.musicPlayer play];
+    
+    _totalRewardsCollected = 0;
     
     return YES;
 }
@@ -75,53 +101,88 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)nativeXSDKDidCreateSession {
-    // Called if the SDK initializes successfully
-    NSLog(@"Wahoo! Now I'm ready to show an ad.");
-    
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Sample App Note: Managing Fetches                                                                                    //
-    //                                                                                                                      //
-    // You need to fetch an ad before EVERY showReadyAd call.                                                           //
-    // Be sure to do this early enough for the ad to load.                                                                  //
-    // If it is likely a user will request an ad more than once per scene, you may want to place a fetch in the ad dismiss  //
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    
-    // Sample App Note: I've added all ad fetches here because I only have a one-scene app, you typically want to only fetch one ad at a time.
-    // Sample App Note: Click the Store Open button and nothing happened? It could be that the ad didn't finish loading yet. Try clicking again in a few seconds
-    [[NativeXSDK sharedInstance] fetchAdWithPlacement:kAdPlacementStoreOpen delegate:self];
-    [[NativeXSDK sharedInstance] fetchAdWithPlacement:kAdPlacementMainMenuScreen delegate:self];
-    [[NativeXSDK sharedInstance] fetchAdWithPlacement:kAdPlacementGameLaunch delegate:self];
-    [[NativeXSDK sharedInstance] fetchAdWithPlacement:kAdPlacementLevelFailed delegate:self];
-}
-
-- (void)nativeXSDKDidFailToCreateSession:(NSError *)error {
-    NSLog(@"Oh no! Something isn't set up correctly - re-read the documentation or ask customer support for help https://selfservice.nativex.com/Help");
-}
-
-- (void)nativeXAdView:(NativeXAdView *)adView didLoadWithPlacement:(NSString *)placement {
-    // Called when an ad has been loaded/cached and is ready to be shown
-    [self.view adIsReadyWithPlacement:placement];
-}
-
-- (void)nativeXAdViewNoAdContent:(NativeXAdView *)adView {
-    // no ads to display.  If your app has a "Free Coins" button or similar, make sure that option is disabled
-    //[self.view.freeCoins:Button.hidden = YES];
-}
-
-// called right before the ad is displayed
-- (void)nativeXAdViewWillDisplay:(NativeXAdView *)adView
+#pragma mark - NativeXSDKDelegate protocol implementation
+//---------------------------------------------------------------------------
+- (void)nativeXSDKInitialized
 {
-    // mute the music in the app before displaying the ad
-    if (adView.willPlayAudio) {
-        [self.musicPlayer pause];
-    }
+    // Called if the SDK initializes successfully
+    NSLog(@"Wahoo! SDK is initialized; Ads that were set to fetch automatically should now be fetched!");
 }
 
--(void)nativeXAdViewDidDismiss:(NativeXAdView *)adView{
-    //Once the ad has been closed we are instantly fetching another ad for that placement.
-    [[NativeXSDK sharedInstance] fetchAdWithCustomPlacement:adView.placement delegate:self];
+//---------------------------------------------------------------------------
+- (void)nativeXSDKFailedToInitializeWithError:(NSError *)error {
+    NSLog(@"Oh no! Something isn't set up correctly - re-read the documentation or ask customer support for help https://selfservice.nativex.com/Help \n Error: %@", error);
+}
+
+#pragma mark - NativeXAdEventDelegate protocol implementation - Fetch delegate callbacks
+
+//---------------------------------------------------------------------------
+- (void) adFetched:(NSString*)placementName
+{
+    // Called when an ad has been loaded/cached and is ready to be shown.  Enable the buttons on the view to show the ads..
+    NSLog(@"Placement '%@': Ad is fetched, and is ready to be shown!", placementName);
+    [self.view setButtonforPlacement:placementName enabled:YES];
+}
+
+//---------------------------------------------------------------------------
+- (void) noAdAvailable:(NSString*)placementName
+{
+    // no ads to display.
+    NSLog(@"Placement '%@': No ad is available to be shown at this time.", placementName);
+    // If your app has a "Free Coins" button or similar, make sure that option is disabled
+    //[self.view.freeCoinsButton.hidden = YES];
+    
+    // on no ad available, fetching ads automatically will NOT fetch another ad; if this happens, you will need to manually fetch another ad!
+    // Note that on a future success, the ad will continue to fetch automatically..
+}
+
+//---------------------------------------------------------------------------
+- (void) adFetchFailed:(NSString*)placementName withError:(NSError*)error
+{
+    // uh oh, something happened with the ad fetch..
+    NSLog(@"Uh Oh, somethoing happened with the ad fetch for placement '%@'.. \nError: %@", placementName, error);
+    
+    // on fetch failed, fetching ads automatically will NOT fetch another ad (due to the error); if this happens, you will need to manually fetch another ad!
+    // Note that on a future success, the ad will continue to fetch automatically..
+}
+
+#pragma mark - NativeXAdEventDelegate protocol implementation - Show delegate callbacks
+
+//---------------------------------------------------------------------------
+// called right after the ad is displayed
+- (void) adShown:(NSString*)placementName;
+{
+    NSLog(@"Placement '%@' has been shown on the screen!", placementName);
+}
+
+//---------------------------------------------------------------------------
+// called when the ad fails to show
+- (void) adFailedToShow:(NSString*)placementName withError:(NSError*)error
+{
+    NSLog(@"Placement '%@' has failed to show!\nError: %@", placementName, error);
+    
+    // on failure to show, because we have set the placements to autofetch, we don't need to call Fetch again; however if
+    // you're fetching the ads manually, you can call fetch again here..
+    
+    // at this point, ad is no longer available to play until autofetch finishes.. We're going to disable the button again until that fetch finishes..
+    [self.view setButtonforPlacement:placementName enabled:NO];
+}
+
+//---------------------------------------------------------------------------
+// called after the ad has dismissed
+- (void) adDismissed:(NSString*)placementName converted:(BOOL)converted
+{
+    // ad is dismissed. Because we have set the placements to autofetch, we don't need to call Fetch again; however if
+    // you're fetching the ads manually, you can call fetch again here..
+    
+    NSLog(@"Placement '%@ has been dismissed", placementName);
+    
+    if (converted) {
+        NSLog(@"Placement '%@' has converted! Rewards should be available soon!", placementName);
+    }
+    
+    // at this point, ad is no longer available to play until autofetch finishes.. We're going to disable the button again until that fetch finishes..
+    [self.view setButtonforPlacement:placementName enabled:NO];
     
     // resume the music playing
     if (self.musicPlayer.isPlaying == NO) {
@@ -129,25 +190,21 @@
     }
 }
 
-- (void)nativeXAdViewAdConverted:(NSString*) placementName {
-    // called when the ad has converted, and rewards will be rewarded
-    NSLog(@"Ad has converted: %@", placementName);
-}
+// Other NativeXAdEventDelegate protocol methods are not explicitly implemented here.
+// All the protocol methods are optional; you can subscribe to them at your discretion.
 
-- (void) nativeXSDKDidRedeemWithRewardInfo:(NativeXRewardInfo *)rewardInfo {
+#pragma mark - NativeXRewardDelegate protocol implementation
+
+//---------------------------------------------------------------------------
+- (void) rewardAvailable:(NativeXRewardInfo*) rewardInfo
+{
     // add the code to handle the currency info and credit your user here
-    int totalRewardAmount = 0;
     for (NativeXReward *reward in rewardInfo.rewards) {
-        NSLog(@"Reward: rewardName:%@ rewardId:%@ amount:%@", reward.rewardName, reward.rewardId, reward.amount);
+        NSLog(@"Reward collected: %@", reward);
         // grab the amount and add it to total
-        totalRewardAmount += [reward.amount intValue];
+        _totalRewardsCollected += [reward.amount intValue];
     }
     [rewardInfo showRedeemAlert];
 }
-
-- (void)nativeXSDKDidRedeemWithError:(NSError *)error {
-    // Called when the currency redemption is unsuccessful
-}
-
 
 @end

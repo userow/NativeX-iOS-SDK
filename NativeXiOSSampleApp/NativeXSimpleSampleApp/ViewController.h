@@ -20,7 +20,8 @@
 - (IBAction)levelFailedButtonPressed:(id)sender;
 - (IBAction)mainMenuButtonPressed:(id)sender;
 - (IBAction)storeOpenButtonPressed:(id)sender;
-- (void)adIsReadyWithPlacement:(NSString*)placement;
+
+- (void) setButtonforPlacement:(NSString *)placement enabled:(BOOL) enabled;
 
 
 @end
