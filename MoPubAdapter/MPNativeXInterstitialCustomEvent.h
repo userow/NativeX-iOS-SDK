@@ -3,6 +3,6 @@
 #import "MPInterstitialCustomEvent.h"
 #import "NativeXSDK.h"
 
-@interface MPNativeXInterstitialCustomEvent : MPInterstitialCustomEvent <NativeXAdViewDelegate>
+@interface MPNativeXInterstitialCustomEvent : MPInterstitialCustomEvent
 
 @end

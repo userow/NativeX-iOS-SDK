@@ -38,7 +38,10 @@
     }
     
     //[[NativeXSDK sharedInstance] setShouldOutputDebugLog:YES];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [[NativeXSDK sharedInstance] createSessionWithAppId:_nativeXappId];
+#pragma clang diagnostic pop
 }
 
 #pragma mark NativeXSDKDelegate

@@ -14,13 +14,10 @@
 #import "NativeXAdView.h"
 
 
-@interface MPNativeXRewardedVideoCustomEvent () <NativeXAdViewDelegate, NativeXRewardDelegate>
+@interface MPNativeXRewardedVideoCustomEvent () <NativeXAdEventDelegate, NativeXRewardDelegate>
 
 @property(nonatomic)NSString* nativeXplacement;
 @property(nonatomic)NSString* nativeXappId;
-@property(nonatomic) BOOL   converted;
-
-@property (nonatomic) BOOL bEnableLoggging;
 
 @end
 
@@ -30,137 +27,127 @@
 // Called when the MoPub SDK requires a new rewarded video ad.
 - (void)requestRewardedVideoWithCustomEventInfo:(NSDictionary *)info
 {
-    // default debugging
-    self.bEnableLoggging = YES;
-    
     // todo: call createsession and stuff
     [[NSUserDefaults standardUserDefaults] setObject:@"MoPub" forKey:@"NativeXBuildType"];
     
     _nativeXappId = [info objectForKey:kMPNativeX_Key_appId];
     _nativeXplacement = [info objectForKey:kMPNativeX_Key_placementId];
     
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
     
     if ((_nativeXplacement == nil) || ([_nativeXplacement length] == 0)) {
         MPLogError(@"Cannot request rewarded video, required placement name is missing or empty!");
         return;
     }
     
-    _converted = NO;
+    //[NativeXSDK enableDebugLog:ENABLE_DEBUG_LOG];
+    [NativeXSDK enableDebugLog:NO];
+
+    NSString* sessionID = [NativeXSDK getSessionId];
+    // TODO: is initialized, can initialize maybe??
+    if ((sessionID == nil) || ([sessionID length] == 0)) {
+        [NativeXSDK initializeWithAppId:_nativeXappId];
+    }
+    // make sure reward delegate is set
+    [NativeXSDK setRewardDelegate:self];
     
-    [[NativeXSDK sharedInstance] setShouldOutputDebugLog:self.bEnableLoggging];
-    
-    [[NativeXSDK sharedInstance] fetchAdStatelessWithCustomPlacement:_nativeXplacement withAppId:_nativeXappId delegate:self];
+    [NativeXSDK fetchAdWithName:_nativeXplacement andFetchDelegate:self];
 }
 
 // Called when the MoPubSDK wants to know if an ad is currently available for the ad network.
 - (BOOL)hasAdAvailable
 {
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
 
     if ((_nativeXplacement == nil) || ([_nativeXplacement length] == 0)) {
         MPLogError(@"Required placement name is missing or empty! No ad is available");
         return NO;
     }
 
-    //return [[NativeXSDK sharedInstance] isAdReadyWithCustomPlacement:_nativeXplacement];
-    return [[NativeXSDK sharedInstance] isStatelessAdReadyWithCustomPlacement:_nativeXplacement delegate:self];
+    return [NativeXSDK isAdFetchedWithName:_nativeXplacement];
 }
 
 // Called when the rewarded video should be displayed.
 - (void)presentRewardedVideoFromViewController:(UIViewController *)viewController
 {
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
     
     if ((_nativeXplacement == nil) || ([_nativeXplacement length] == 0)) {
         MPLogError(@"Cannot show rewarded video, required placement name is missing or empty!");
         return;
     }
     
-    [[NativeXSDK sharedInstance] showReadyAdStatelessWithCustomPlacement:_nativeXplacement delegate:self];
+    [NativeXSDK showAdWithName:_nativeXplacement andShowDelegate:self rootViewController:viewController];
 }
 
 //Override this method to handle when the custom event is no longer needed by the rewarded video system.
 - (void)handleCustomEventInvalidated
 {
     // we don't need any cleanup code..
+    //if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] --", __PRETTY_FUNCTION__, __LINE__);
 }
 
 
-#pragma mark NativeXAdViewDelegate methods
+#pragma mark NativeXAdEventDelegate protocol impl
 
 
 // we're not using mediation settings, so not implementing this..
 // Call this method to retrieve a mediation settings object (if one is provided by the application) for this instance of your ad.
 //- (id<MPMediationSettingsProtocol>)instanceMediationSettingsForClass:(Class)aClass;
 
-- (void)nativeXAdView:(NativeXAdView *)adView didLoadWithPlacement:(NSString *)placement
+#pragma mark fetch methods
+
+//---------------------------------------------------------------------------
+- (void) adFetched:(NSString *)placementName
 {
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
     // Call this method immediately after an ad loads succesfully.
     [self.delegate rewardedVideoDidLoadAdForCustomEvent:self];
 }
-
-- (void)nativeXAdViewNoAdContent:(NativeXAdView *)adView
+//---------------------------------------------------------------------------
+- (void) noAdAvailable:(NSString *)placementName
 {
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
     // Call this method immediately after an ad fails to load.
     [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self error:nil];
 }
-
-- (void)nativeXAdView:(NativeXAdView *)adView didFailWithError:(NSError *)error
+//---------------------------------------------------------------------------
+- (void) adFetchFailed:(NSString *)placementName withError:(NSError *)error
 {
-    if (self.bEnableLoggging) MPLogError(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogError(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
     MPLogError(@"Ad failed to load with error=%@", error);
     
     // Call this method when the application has attempted to play a rewarded video and it cannot be played.
     [self.delegate rewardedVideoDidFailToPlayForCustomEvent:self error:error];
 }
 
-- (void)nativeXAdViewDidExpire:(NativeXAdView *)adView
+#pragma mark show methods
+
+//---------------------------------------------------------------------------
+- (void) adExpired:(NSString *)placementName
 {
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
     // Call this method if a previously loaded rewarded video should no longer be eligible for presentation.
     [self.delegate rewardedVideoDidExpireForCustomEvent:self];
 }
-
-- (void)nativeXAdViewWillDisplay:(NativeXAdView *)adView
+- (void) adShown:(NSString *)placementName
 {
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
     // Call this method when an ad is about to appear.
     [self.delegate rewardedVideoWillAppearForCustomEvent:self];
-}
-
-- (void)nativeXAdViewDidDisplay:(NativeXAdView *)adView
-{
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
     // Call this method when an ad has finished appearing.
     [self.delegate rewardedVideoDidAppearForCustomEvent:self];
 }
-
-- (void)nativeXAdViewWillDismiss:(NativeXAdView *)adView
+//---------------------------------------------------------------------------
+- (void) adFailedToShow:(NSString *)placementName withError:(NSError *)error
 {
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
-    // Call this method when an ad is about to disappear.
-    [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
+    MPLogError(@"Ad failed to show with error=%@", error);
 }
-
-- (void)nativeXAdViewDidDismiss:(NativeXAdView *)adView
+//---------------------------------------------------------------------------
+- (void) userRedirected:(NSString *)placementName
 {
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
-    // Call this method when an ad has finished disappearing.
-    [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
-    
-    if (_converted) {
-        [[NativeXSDK sharedInstance] redeemStatelessRewards:self];
-        // reset converted state, in case this object is reused..
-        _converted = NO;
-    }
-}
-
-- (void)nativeXAdViewWillRedirectUser:(NativeXAdView *)adView
-{
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
     // Call this method when the rewarded video ad will cause the user to leave the application.
     [self.delegate rewardedVideoWillLeaveApplicationForCustomEvent:self];
     
@@ -170,30 +157,29 @@
     // those callbacks (since leaving the application is generally an indicator of a user tap).
     [self.delegate rewardedVideoDidReceiveTapEventForCustomEvent:self];
 }
-
-- (void)nativeXAdViewAdConverted:(NSString*) placementName
+//---------------------------------------------------------------------------
+- (void) adDismissed:(NSString *)placementName converted:(BOOL)converted
 {
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
-    _converted = YES;
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    // Call this method when an ad is about to disappear.
+    [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
+    // Call this method when an ad has finished disappearing.
+    [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
+    
+    if (converted) {
+        // kicking off a reward redemption happens automatically on dismiss.. don't need to do another..
+        //[NativeXSDK isRewardAvailable];
+    }
 }
 
-#pragma mark NativeXRewardDelegate protocol implementation
+#pragma mark NativeXRewardDelegateP protocol impl
 
-- (void)rewardDidRedeemWithError:(NSError *)error
+//---------------------------------------------------------------------------
+- (void) rewardAvailable:(NativeXRewardInfo *)rewardInfo
 {
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
     
-    // if we have an error, we're not rewarding the user with anything..
-    MPLogError(@"Reward redemption failed, error:%@", error);
-   
-}
-
-- (void)rewardDidRedeemWithRewardInfo:(NativeXRewardInfo*)rewardInfo
-{
-
-    if (self.bEnableLoggging) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
-    
-    if ([rewardInfo.rewards count] <= 0){
+    if ([rewardInfo.rewards count] <= 0) {
         MPLogWarn(@"No reward amount found; not calling MoPub reward delegate..");
         return;
     }

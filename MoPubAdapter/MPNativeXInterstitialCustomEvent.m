@@ -3,7 +3,7 @@
 #import "MPNativeXAdapterConstants.h"
 #import "MPLogging.h"
 
-@interface MPNativeXInterstitialCustomEvent ()
+@interface MPNativeXInterstitialCustomEvent () <NativeXAdEventDelegate>
 
 @property(nonatomic)NSString* nativeXplacement;
 @property(nonatomic)NSString* nativeXappId;
@@ -16,6 +16,7 @@
 
 
 #pragma mark - MPInterstitialCustomEvent Subclass Methods
+//---------------------------------------------------------------------------
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info
 {
     //[[NativeXSDK sharedInstance] setDelegate:(id)self];
@@ -24,79 +25,98 @@
 
     _nativeXappId = [info objectForKey:kMPNativeX_Key_appId];
     _nativeXplacement = [info objectForKey:kMPNativeX_Key_placementId];
-
-    //MPLogInfo(@"NXADAPTOR -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
 
     if ((_nativeXplacement == nil) || ([_nativeXplacement length] == 0)) {
-        MPLogError(@"NXADAPTOR %s, %i, Cannot request interstitial, required placement name is missing or empty! placement=%@,", __func__, __LINE__, _nativeXplacement);
+        MPLogError(@"[nxIstlAdapter] %s, %i, Cannot request interstitial, required placement name is missing or empty! placement=%@,", __func__, __LINE__, _nativeXplacement);
         return;
     }
 
-    //[[NativeXSDK sharedInstance] setShouldOutputDebugLog:YES];
+    [NativeXSDK enableDebugLog:ENABLE_DEBUG_LOG];
+    NSString* sessionID = [NativeXSDK getSessionId];
+    // TODO: is initialized, can initialize maybe??
+    if ((sessionID == nil) || ([sessionID length] == 0)) {
+        [NativeXSDK initializeWithAppId:_nativeXappId];
+    }
 
-    [[NativeXSDK sharedInstance] fetchAdStatelessWithCustomPlacement:_nativeXplacement withAppId:_nativeXappId delegate:self];
+    // queue up fetch
+    [NativeXSDK fetchAdWithName:_nativeXplacement andFetchDelegate:self];
 }
 
+//---------------------------------------------------------------------------
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController
 {
-    //MPLogInfo(@"NXADAPTOR -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
 
     if ((_nativeXplacement == nil) || ([_nativeXplacement length] == 0)) {
-        MPLogError(@"NXADAPTOR %s, %i, Cannot show interstitial, required placement name is missing or empty! placement=%@,", __func__, __LINE__, _nativeXplacement);
+        MPLogError(@"[nxIstlAdapter] %s, %i, Cannot show interstitial, required placement name is missing or empty! placement=%@,", __func__, __LINE__, _nativeXplacement);
         return;
     }
 
-    [[NativeXSDK sharedInstance] showReadyAdStatelessWithCustomPlacement:_nativeXplacement delegate:self];
+    [NativeXSDK showAdWithName:_nativeXplacement andShowDelegate:self rootViewController:rootViewController];
 }
 
-#pragma mark NativeXAdViewDelegate
--(void)nativeXAdViewWillDisplay:(NativeXAdView *)adView
-{
-    //MPLogInfo(@"NXADAPTOR -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
-    [self.delegate interstitialCustomEventWillAppear:self];
-}
+#pragma mark NativeXAdEventDelegate protocol impl
 
--(void)nativeXAdViewDidDisplay:(NativeXAdView *)adView
+#pragma mark fetch methods
+//---------------------------------------------------------------------------
+- (void) adFetched:(NSString *)placementName
 {
-    //MPLogInfo(@"NXADAPTOR -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
-    [self.delegate interstitialCustomEventDidAppear:self];
-}
-
--(void)nativeXAdViewWillDismiss:(NativeXAdView *)adView
-{
-    //MPLogInfo(@"NXADAPTOR -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
-    [self.delegate interstitialCustomEventWillDisappear:self];
-}
-
--(void)nativeXAdViewDidDismiss:(NativeXAdView *)adView
-{
-    //MPLogInfo(@"NXADAPTOR -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
-    [self.delegate interstitialCustomEventDidDisappear:self];
-}
-
--(void)nativeXAdView:(NativeXAdView *)adView didFailWithError:(NSError *)error
-{
-    //MPLogInfo(@"NXADAPTOR -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
-    [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:error];
-}
-
-- (void)nativeXAdView:(NativeXAdView *)adView didLoadWithPlacement:(NSString *)placement
-{
-    //MPLogInfo(@"NXADAPTOR -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
     [self.delegate interstitialCustomEvent:self didLoadAd:nil];
 }
-
-- (void)nativeXAdViewNoAdContent:(NativeXAdView *)adView
+//---------------------------------------------------------------------------
+- (void) adFetchFailed:(NSString *)placementName withError:(NSError *)error
 {
-    //MPLogInfo(@"NXADAPTOR -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
+    MPLogError(@"Ad failed to load with error=%@", error);
+    [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:error];
+}
+//---------------------------------------------------------------------------
+- (void) noAdAvailable:(NSString *)placementName
+{
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
+    MPLogError(@"Ad failed to load; no ad available");
     [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
 }
 
-- (void)nativeXAdViewWillRedirectUser:(NativeXAdView *)adView
+#pragma mark show methods
+
+//---------------------------------------------------------------------------
+- (void) adExpired:(NSString *)placementName
 {
-    //MPLogInfo(@"NXADAPTOR -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
-    [self.delegate interstitialCustomEventWillLeaveApplication: self];
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
+    [self.delegate interstitialCustomEventDidExpire:self];
+}
+//---------------------------------------------------------------------------
+- (void) adShown:(NSString *)placementName
+{
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
+    // since we're discontinuing willShow, need to fire both on shown
+    [self.delegate interstitialCustomEventWillAppear:self];
+    [self.delegate interstitialCustomEventDidAppear:self];
+}
+//---------------------------------------------------------------------------
+- (void) adFailedToShow:(NSString *)placementName withError:(NSError *)error
+{
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
+    MPLogError(@"Ad failed to show with error=%@", error);
+}
+//---------------------------------------------------------------------------
+- (void) userRedirected:(NSString *)placementName
+{
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
     [self.delegate interstitialCustomEventDidReceiveTapEvent:self];
+    [self.delegate interstitialCustomEventWillLeaveApplication: self];
+}
+//---------------------------------------------------------------------------
+- (void) adDismissed:(NSString *)placementName converted:(BOOL)converted
+{
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
+    // since willDismiss is discontinued, need to fire both on dismissed
+    [self.delegate interstitialCustomEventWillDisappear:self];
+    [self.delegate interstitialCustomEventDidDisappear:self];
 }
 
 @end
