@@ -8,20 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "NativeXSDK.h"
+#import "NativeXSimpleSampleApp-Swift.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <NativeXAdEventDelegate, NativeXRewardDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *gameLaunch;
-@property (weak, nonatomic) IBOutlet UIButton *mainMenu;
-@property (weak, nonatomic) IBOutlet UIButton *levelFailed;
-@property (weak, nonatomic) IBOutlet UIButton *storeOpen;
+@property (weak, nonatomic) IBOutlet UIButton *showAdButton;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 
-- (IBAction)gameLaunchButtonPressed:(id)sender;
-- (IBAction)levelFailedButtonPressed:(id)sender;
-- (IBAction)mainMenuButtonPressed:(id)sender;
-- (IBAction)storeOpenButtonPressed:(id)sender;
-
-- (void) setButtonforPlacement:(NSString *)placement enabled:(BOOL) enabled;
-
+- (IBAction)viewTapped:(UITapGestureRecognizer *)sender;
+- (IBAction)showAdClicked:(id)sender;
+- (IBAction)mutePressed:(UIButton *)sender;
 
 @end

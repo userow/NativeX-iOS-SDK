@@ -11,11 +11,9 @@
 #import "NativeXSDK.h"
 #import "ViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, NativeXSDKDelegate, NativeXAdEventDelegate, NativeXRewardDelegate>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) ViewController *view;
-
-@property (nonatomic, strong) AVAudioPlayer* musicPlayer;
 
 @end

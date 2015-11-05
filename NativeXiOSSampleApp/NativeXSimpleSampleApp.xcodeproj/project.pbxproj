@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		328DCEAB1BE969F8003AE734 /* NXPlacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DCEAA1BE969F8003AE734 /* NXPlacements.swift */; };
+		328DCEAD1BE98485003AE734 /* Rolemusic-Sreda_Vniecaps.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 328DCEAC1BE98485003AE734 /* Rolemusic-Sreda_Vniecaps.mp3 */; };
+		328DCEAF1BE98C8B003AE734 /* NXMusicMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DCEAE1BE98C8B003AE734 /* NXMusicMaster.swift */; };
+		328DCEB11BE9A9FE003AE734 /* NXSampleSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DCEB01BE9A9FE003AE734 /* NXSampleSettings.swift */; };
+		328DCEB31BE9AF77003AE734 /* NXRewardsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DCEB21BE9AF77003AE734 /* NXRewardsManager.swift */; };
+		328DCEB51BE9D5EE003AE734 /* NXColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DCEB41BE9D5EE003AE734 /* NXColors.swift */; };
+		328DCEB71BEAC7E0003AE734 /* mute-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 328DCEB61BEAC7E0003AE734 /* mute-green.png */; };
+		328DCEB91BEACA96003AE734 /* volume-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 328DCEB81BEACA96003AE734 /* volume-green.png */; };
 		5FB5AA4B1BE7EE9900977DF0 /* libNativeXSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB5AA3E1BE7EE9900977DF0 /* libNativeXSDK.a */; };
 		5FE12DEB19DDC371007087CF /* whiteeyes_la_plume.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5FE12DEA19DDC371007087CF /* whiteeyes_la_plume.mp3 */; };
 		CD511CBA19A7BC0400D3793A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CB919A7BC0400D3793A /* Foundation.framework */; };
@@ -15,8 +23,7 @@
 		CD511CC419A7BC0400D3793A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD511CC219A7BC0400D3793A /* InfoPlist.strings */; };
 		CD511CC619A7BC0400D3793A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD511CC519A7BC0400D3793A /* main.m */; };
 		CD511CCA19A7BC0400D3793A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD511CC919A7BC0400D3793A /* AppDelegate.m */; };
-		CD511CCD19A7BC0400D3793A /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD511CCB19A7BC0400D3793A /* Main_iPhone.storyboard */; };
-		CD511CD019A7BC0400D3793A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD511CCE19A7BC0400D3793A /* Main_iPad.storyboard */; };
+		CD511CCD19A7BC0400D3793A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD511CCB19A7BC0400D3793A /* Main.storyboard */; };
 		CD511CD319A7BC0400D3793A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD511CD219A7BC0400D3793A /* ViewController.m */; };
 		CD511CD519A7BC0400D3793A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD511CD419A7BC0400D3793A /* Images.xcassets */; };
 		CD511CDC19A7BC0400D3793A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CDB19A7BC0400D3793A /* XCTest.framework */; };
@@ -43,6 +50,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		328DCEA41BE7FE48003AE734 /* NativeXSimpleSampleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NativeXSimpleSampleApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		328DCEAA1BE969F8003AE734 /* NXPlacements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NXPlacements.swift; sourceTree = "<group>"; };
+		328DCEAC1BE98485003AE734 /* Rolemusic-Sreda_Vniecaps.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rolemusic-Sreda_Vniecaps.mp3"; sourceTree = "<group>"; };
+		328DCEAE1BE98C8B003AE734 /* NXMusicMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NXMusicMaster.swift; sourceTree = "<group>"; };
+		328DCEB01BE9A9FE003AE734 /* NXSampleSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NXSampleSettings.swift; sourceTree = "<group>"; };
+		328DCEB21BE9AF77003AE734 /* NXRewardsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NXRewardsManager.swift; sourceTree = "<group>"; };
+		328DCEB41BE9D5EE003AE734 /* NXColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NXColors.swift; sourceTree = "<group>"; };
+		328DCEB61BEAC7E0003AE734 /* mute-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mute-green.png"; sourceTree = "<group>"; };
+		328DCEB81BEACA96003AE734 /* volume-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume-green.png"; sourceTree = "<group>"; };
 		5FB5AA3E1BE7EE9900977DF0 /* libNativeXSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNativeXSDK.a; sourceTree = "<group>"; };
 		5FB5AA401BE7EE9900977DF0 /* NativeXAdEventDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXAdEventDelegate.h; sourceTree = "<group>"; };
 		5FB5AA411BE7EE9900977DF0 /* NativeXAdInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXAdInfo.h; sourceTree = "<group>"; };
@@ -66,8 +82,7 @@
 		CD511CC719A7BC0400D3793A /* NativeXSimpleSampleApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NativeXSimpleSampleApp-Prefix.pch"; sourceTree = "<group>"; };
 		CD511CC819A7BC0400D3793A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CD511CC919A7BC0400D3793A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CD511CCC19A7BC0400D3793A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		CD511CCF19A7BC0400D3793A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		CD511CCC19A7BC0400D3793A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD511CD119A7BC0400D3793A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CD511CD219A7BC0400D3793A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CD511CD419A7BC0400D3793A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -184,12 +199,17 @@
 			children = (
 				CD511CC819A7BC0400D3793A /* AppDelegate.h */,
 				CD511CC919A7BC0400D3793A /* AppDelegate.m */,
-				CD511CCB19A7BC0400D3793A /* Main_iPhone.storyboard */,
-				CD511CCE19A7BC0400D3793A /* Main_iPad.storyboard */,
+				CD511CCB19A7BC0400D3793A /* Main.storyboard */,
 				CD511CD119A7BC0400D3793A /* ViewController.h */,
 				CD511CD219A7BC0400D3793A /* ViewController.m */,
 				CD511CD419A7BC0400D3793A /* Images.xcassets */,
 				CD511CC019A7BC0400D3793A /* Supporting Files */,
+				328DCEA41BE7FE48003AE734 /* NativeXSimpleSampleApp-Bridging-Header.h */,
+				328DCEAA1BE969F8003AE734 /* NXPlacements.swift */,
+				328DCEAE1BE98C8B003AE734 /* NXMusicMaster.swift */,
+				328DCEB01BE9A9FE003AE734 /* NXSampleSettings.swift */,
+				328DCEB21BE9AF77003AE734 /* NXRewardsManager.swift */,
+				328DCEB41BE9D5EE003AE734 /* NXColors.swift */,
 			);
 			path = NativeXSimpleSampleApp;
 			sourceTree = "<group>";
@@ -197,6 +217,9 @@
 		CD511CC019A7BC0400D3793A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				328DCEB81BEACA96003AE734 /* volume-green.png */,
+				328DCEB61BEAC7E0003AE734 /* mute-green.png */,
+				328DCEAC1BE98485003AE734 /* Rolemusic-Sreda_Vniecaps.mp3 */,
 				5FE12DEA19DDC371007087CF /* whiteeyes_la_plume.mp3 */,
 				CD511CC119A7BC0400D3793A /* NativeXSimpleSampleApp-Info.plist */,
 				CD511CC219A7BC0400D3793A /* InfoPlist.strings */,
@@ -268,6 +291,7 @@
 		CD511CAE19A7BC0400D3793A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = NativeX;
 				TargetAttributes = {
@@ -303,10 +327,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD511CD019A7BC0400D3793A /* Main_iPad.storyboard in Resources */,
+				328DCEAD1BE98485003AE734 /* Rolemusic-Sreda_Vniecaps.mp3 in Resources */,
 				CD511CD519A7BC0400D3793A /* Images.xcassets in Resources */,
-				CD511CCD19A7BC0400D3793A /* Main_iPhone.storyboard in Resources */,
+				CD511CCD19A7BC0400D3793A /* Main.storyboard in Resources */,
 				CD511CC419A7BC0400D3793A /* InfoPlist.strings in Resources */,
+				328DCEB71BEAC7E0003AE734 /* mute-green.png in Resources */,
+				328DCEB91BEACA96003AE734 /* volume-green.png in Resources */,
 				5FE12DEB19DDC371007087CF /* whiteeyes_la_plume.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,8 +353,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD511CD319A7BC0400D3793A /* ViewController.m in Sources */,
+				328DCEB51BE9D5EE003AE734 /* NXColors.swift in Sources */,
 				CD511CCA19A7BC0400D3793A /* AppDelegate.m in Sources */,
 				CD511CC619A7BC0400D3793A /* main.m in Sources */,
+				328DCEAB1BE969F8003AE734 /* NXPlacements.swift in Sources */,
+				328DCEB11BE9A9FE003AE734 /* NXSampleSettings.swift in Sources */,
+				328DCEB31BE9AF77003AE734 /* NXRewardsManager.swift in Sources */,
+				328DCEAF1BE98C8B003AE734 /* NXMusicMaster.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,20 +390,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		CD511CCB19A7BC0400D3793A /* Main_iPhone.storyboard */ = {
+		CD511CCB19A7BC0400D3793A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CD511CCC19A7BC0400D3793A /* Base */,
 			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		CD511CCE19A7BC0400D3793A /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CD511CCF19A7BC0400D3793A /* Base */,
-			);
-			name = Main_iPad.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		CD511CE419A7BC0400D3793A /* InfoPlist.strings */ = {
@@ -464,11 +487,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Prefix.pch";
 				INFOPLIST_FILE = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NativeXiOSSDK-5.5.2",
@@ -476,6 +502,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nativex.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -485,11 +514,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Prefix.pch";
 				INFOPLIST_FILE = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NativeXiOSSDK-5.5.2",
@@ -497,6 +529,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nativex.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "NativeXSimpleSampleApp/NativeXSimpleSampleApp-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
