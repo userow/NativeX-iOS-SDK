@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  NativeXSimpleSampleApp
 //
-//  Copyright (c) 2014 - 2015 NativeX. All rights reserved.
-//
+//  Created by Matthew MacGregor November 2015.
+//  Copyright (c) 2015 NativeX. All rights reserved.
 //
 
 #import "AppDelegate.h"

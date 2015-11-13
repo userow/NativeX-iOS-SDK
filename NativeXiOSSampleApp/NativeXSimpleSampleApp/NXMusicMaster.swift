@@ -15,6 +15,8 @@ class NXMusicMaster : NSObject {
     static let sharedInstance = NXMusicMaster()
     
     private var audioPlayer: AVAudioPlayer?
+    private let defaults = NSUserDefaults.standardUserDefaults()
+
     
     override init(){
         super.init()
@@ -37,26 +39,17 @@ class NXMusicMaster : NSObject {
     
     }
     
-    private var _isMutedByUser : Bool = false
+    func mute() {
+        audioPlayer?.volume = Float(0.0)
+    }
     
-    var isMutedByUser : Bool {
-        get {
-            return _isMutedByUser
-        }
-        set( val ) {
-            // Not only set the value, but set the volume for the audio player at the same time
-            _isMutedByUser = val
-            if audioPlayer != nil {
-                if _isMutedByUser  {
-                    audioPlayer!.volume = Float(0.0)
-                } else {
-                    // We should probably save and restore the actual volume, 
-                    // but this is good enough for a sample app.
-                    audioPlayer!.volume = Float(1.0)
-                }
-            }
-            
-        }
+    func unmute() {
+        audioPlayer?.volume = Float(1.0)
+    }
+    
+    func autoMute() {
+        let mm = NXMusicMaster.sharedInstance
+        (NXSampleSettings.sharedInstance.isMutedByUser) ? mm.mute() : mm.unmute()
     }
     
     func pause() {

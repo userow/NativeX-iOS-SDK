@@ -15,6 +15,7 @@
 		328DCEB51BE9D5EE003AE734 /* NXColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328DCEB41BE9D5EE003AE734 /* NXColors.swift */; };
 		328DCEB71BEAC7E0003AE734 /* mute-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 328DCEB61BEAC7E0003AE734 /* mute-green.png */; };
 		328DCEB91BEACA96003AE734 /* volume-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 328DCEB81BEACA96003AE734 /* volume-green.png */; };
+		32E47E091BF27238007B50C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E47E081BF27238007B50C2 /* SettingsViewController.swift */; };
 		5FB5AA4B1BE7EE9900977DF0 /* libNativeXSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB5AA3E1BE7EE9900977DF0 /* libNativeXSDK.a */; };
 		CD511CBA19A7BC0400D3793A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CB919A7BC0400D3793A /* Foundation.framework */; };
 		CD511CBC19A7BC0400D3793A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CBB19A7BC0400D3793A /* CoreGraphics.framework */; };
@@ -23,7 +24,7 @@
 		CD511CC619A7BC0400D3793A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD511CC519A7BC0400D3793A /* main.m */; };
 		CD511CCA19A7BC0400D3793A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD511CC919A7BC0400D3793A /* AppDelegate.m */; };
 		CD511CCD19A7BC0400D3793A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD511CCB19A7BC0400D3793A /* Main.storyboard */; };
-		CD511CD319A7BC0400D3793A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD511CD219A7BC0400D3793A /* ViewController.m */; };
+		CD511CD319A7BC0400D3793A /* AdPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD511CD219A7BC0400D3793A /* AdPickerViewController.m */; };
 		CD511CD519A7BC0400D3793A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD511CD419A7BC0400D3793A /* Images.xcassets */; };
 		CD511CDC19A7BC0400D3793A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CDB19A7BC0400D3793A /* XCTest.framework */; };
 		CD511CDD19A7BC0400D3793A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD511CB919A7BC0400D3793A /* Foundation.framework */; };
@@ -58,6 +59,7 @@
 		328DCEB41BE9D5EE003AE734 /* NXColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NXColors.swift; sourceTree = "<group>"; };
 		328DCEB61BEAC7E0003AE734 /* mute-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mute-green.png"; sourceTree = "<group>"; };
 		328DCEB81BEACA96003AE734 /* volume-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume-green.png"; sourceTree = "<group>"; };
+		32E47E081BF27238007B50C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		5FB5AA3E1BE7EE9900977DF0 /* libNativeXSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNativeXSDK.a; sourceTree = "<group>"; };
 		5FB5AA401BE7EE9900977DF0 /* NativeXAdEventDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXAdEventDelegate.h; sourceTree = "<group>"; };
 		5FB5AA411BE7EE9900977DF0 /* NativeXAdInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeXAdInfo.h; sourceTree = "<group>"; };
@@ -81,8 +83,8 @@
 		CD511CC819A7BC0400D3793A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CD511CC919A7BC0400D3793A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CD511CCC19A7BC0400D3793A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CD511CD119A7BC0400D3793A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CD511CD219A7BC0400D3793A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CD511CD119A7BC0400D3793A /* AdPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdPickerViewController.h; sourceTree = "<group>"; };
+		CD511CD219A7BC0400D3793A /* AdPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdPickerViewController.m; sourceTree = "<group>"; };
 		CD511CD419A7BC0400D3793A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CD511CDA19A7BC0400D3793A /* NativeXSimpleSampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NativeXSimpleSampleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD511CDB19A7BC0400D3793A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -128,6 +130,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32E47E0A1BF2B325007B50C2 /* NXSampleAppHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				328DCEAA1BE969F8003AE734 /* NXPlacements.swift */,
+				328DCEAE1BE98C8B003AE734 /* NXMusicMaster.swift */,
+				328DCEB01BE9A9FE003AE734 /* NXSampleSettings.swift */,
+				328DCEB21BE9AF77003AE734 /* NXRewardsManager.swift */,
+				328DCEB41BE9D5EE003AE734 /* NXColors.swift */,
+			);
+			name = NXSampleAppHelpers;
+			sourceTree = "<group>";
+		};
+		32E47E0B1BF2B5A5007B50C2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD511CD119A7BC0400D3793A /* AdPickerViewController.h */,
+				CD511CD219A7BC0400D3793A /* AdPickerViewController.m */,
+				32E47E081BF27238007B50C2 /* SettingsViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		5FB5AA3D1BE7EE9900977DF0 /* NativeXiOSSDK-5.5.2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,16 +222,11 @@
 				CD511CC819A7BC0400D3793A /* AppDelegate.h */,
 				CD511CC919A7BC0400D3793A /* AppDelegate.m */,
 				CD511CCB19A7BC0400D3793A /* Main.storyboard */,
-				CD511CD119A7BC0400D3793A /* ViewController.h */,
-				CD511CD219A7BC0400D3793A /* ViewController.m */,
+				32E47E0B1BF2B5A5007B50C2 /* ViewControllers */,
 				CD511CD419A7BC0400D3793A /* Images.xcassets */,
 				CD511CC019A7BC0400D3793A /* Supporting Files */,
 				328DCEA41BE7FE48003AE734 /* NativeXSimpleSampleApp-Bridging-Header.h */,
-				328DCEAA1BE969F8003AE734 /* NXPlacements.swift */,
-				328DCEAE1BE98C8B003AE734 /* NXMusicMaster.swift */,
-				328DCEB01BE9A9FE003AE734 /* NXSampleSettings.swift */,
-				328DCEB21BE9AF77003AE734 /* NXRewardsManager.swift */,
-				328DCEB41BE9D5EE003AE734 /* NXColors.swift */,
+				32E47E0A1BF2B325007B50C2 /* NXSampleAppHelpers */,
 			);
 			path = NativeXSimpleSampleApp;
 			sourceTree = "<group>";
@@ -348,7 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD511CD319A7BC0400D3793A /* ViewController.m in Sources */,
+				CD511CD319A7BC0400D3793A /* AdPickerViewController.m in Sources */,
 				328DCEB51BE9D5EE003AE734 /* NXColors.swift in Sources */,
 				CD511CCA19A7BC0400D3793A /* AppDelegate.m in Sources */,
 				CD511CC619A7BC0400D3793A /* main.m in Sources */,
@@ -356,6 +375,7 @@
 				328DCEB11BE9A9FE003AE734 /* NXSampleSettings.swift in Sources */,
 				328DCEB31BE9AF77003AE734 /* NXRewardsManager.swift in Sources */,
 				328DCEAF1BE98C8B003AE734 /* NXMusicMaster.swift in Sources */,
+				32E47E091BF27238007B50C2 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

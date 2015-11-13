@@ -12,26 +12,46 @@ import Foundation
 class NXSampleSettings : NSObject {
 
     static let sharedInstance = NXSampleSettings()
-    private var _isAdShowing : Bool = false
+    
+    private let defaults = NSUserDefaults.standardUserDefaults()
+    private let kAppId = "NX::AppId"
+    private let kAppIdDefault = "20910"
+    private let isMutedByUserKey = "NXKey::isMutedByUser"
     
     var appId : String {
         
         get {
-            // Hardcoded NativeX AppId for the Sample App
-            return "20910"
+            // Returns the Sample App Id by default
+            return defaults.stringForKey(kAppId) ?? kAppIdDefault
         }
         
+        set {
+            if newValue.isEmpty == false {
+                defaults.setValue(newValue, forKey: kAppId)
+            }
+        }
     }
     
-    var isAdShowing : Bool {
+    private var _isMutedByUser : Bool = false
+    var isMutedByUser : Bool {
         get {
-            return _isAdShowing
+            _isMutedByUser = defaults.boolForKey(isMutedByUserKey)
+            return _isMutedByUser
         }
-        set ( newVal ) {
-            _isAdShowing = newVal
+        
+        set( val ) {
+            // Not only set the value, but set the volume for the audio player at the same time
+            _isMutedByUser = val
+            defaults.setBool(_isMutedByUser, forKey: isMutedByUserKey)
         }
+    }
+    
+    var isAdShowing : Bool = false
+
+    func resetDefaults() {
+        self.appId = kAppIdDefault
+        self.isMutedByUser = false
         
     }
     
-
 }

@@ -2,20 +2,20 @@
 //  ViewController.m
 //  NativeXSimpleSampleApp
 //
-//  Created by Melissa Johnson on 8/22/14.
-//  Copyright (c) 2014 NativeX. All rights reserved.
+//  Created by Matthew MacGregor November 2015.
+//  Copyright (c) 2015 NativeX. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "AdPickerViewController.h"
 #import "AppDelegate.h"
 
-@interface ViewController ()
-
-
+@interface AdPickerViewController ()
 
 @end
 
-@implementation ViewController
+UIAlertView *alert;
+
+@implementation AdPickerViewController
 
 - (void)didReceiveMemoryWarning
 {
@@ -31,9 +31,7 @@
     [[self.showAdButton layer] setCornerRadius:8.0f];
     [[self.showAdButton layer] setMasksToBounds:YES];
     [[self.showAdButton layer] setBorderWidth:1.0f];
-    [self.infoLabel sizeToFit];
     [self.pickerView setBackgroundColor:NXColors.grey];
-    [self setInfoText];
     
     // Start fetching ads for a placement. NativeX SDK takes care of keeping the ads loaded.
     [NativeXSDK fetchAdsAutomaticallyWithName: [[NXPlacements sharedInstance] mapIdToName:0] enabled:true];
@@ -42,6 +40,7 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     [[NXMusicMaster sharedInstance] play];
+    [[NXMusicMaster sharedInstance] autoMute];
 }
 
 # pragma Helper Methods
@@ -50,32 +49,6 @@
 {
     NSInteger row = [self.pickerView selectedRowInComponent:0];
     return [[NXPlacements sharedInstance] mapIdToName:row];
-}
-
--(void) setInfoText
-{
-    NXRewardsManager *rm = [NXRewardsManager sharedInstance];
-    [rm commit];
-    NSString *template = @"NativeX AppId: %@ \nYou've earned %ld %@";
-    self.infoLabel.text = [NSString stringWithFormat:template, [[NXSampleSettings sharedInstance] appId], rm.amount, rm.rewardName];
-}
-
-- (void) setButton:(UIButton*)button enabled:(BOOL) enabled
-{
-    button.enabled = enabled;
-    button.alpha = (enabled ? 1.0f : 0.5f );
-}
-
--(void)labelsFade
-{
-    [UIView animateWithDuration:3.0
-                          delay:1.0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^ {
-                         self.infoLabel.alpha = 0.0;
-                     }
-                     completion:^(BOOL finished) {
-                     }];
 }
 
 #pragma Picker View Delegates
@@ -101,7 +74,7 @@
     if (!tView)
     {
         tView = [[UILabel alloc] init];
-        [tView setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleBody]];
+        [tView setFont:[UIFont systemFontOfSize:24]];
         [tView setTextAlignment:NSTextAlignmentCenter];
         [tView setTextColor: NXColors.citrus];
         tView.numberOfLines=3;
@@ -150,26 +123,14 @@
 {
 
     NXRewardsManager *rm = [NXRewardsManager sharedInstance];
+ 
     for( NativeXReward *r in rewardInfo.rewards ) {
-        
-        if( [rm.rewardId isEqualToString:r.rewardId] ) {
-            rm.amount += [r.amount integerValue];
-        }
-        
+        [rm add: r.rewardId name:r.rewardName amount: [r.amount integerValue]];
     }
-    
-    [self setInfoText];
     
 }
 
 #pragma Actions
-
-- (IBAction) viewTapped:(UITapGestureRecognizer *)sender
-{
-    self.infoLabel.alpha = 0.80;
-    [self performSelector:@selector(labelsFade) withObject:nil afterDelay:3.0f];
-    
-}
 
 - (IBAction)showAdClicked:(id)sender
 {
@@ -191,12 +152,5 @@
     
 }
 
-- (IBAction)mutePressed:(UIButton *)sender {
-    
-    // Toggle the mute button UI and set the value in the music master
-    sender.selected = !sender.selected;
-    [NXMusicMaster sharedInstance].isMutedByUser = sender.selected;
-    
-}
 
 @end
