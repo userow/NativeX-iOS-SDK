@@ -67,7 +67,7 @@ class SettingsViewController: UIViewController {
         doneToolbar.barStyle = UIBarStyle.BlackTranslucent
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: Selector("keyboardDoneButtonClicked"))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(keyboardDoneButtonClicked))
         
         UIToolbar.appearance().tintColor = NXColors.citrus
         var items = [AnyObject]()
