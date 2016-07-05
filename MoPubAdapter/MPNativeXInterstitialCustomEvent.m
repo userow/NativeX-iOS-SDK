@@ -7,6 +7,8 @@
 
 @property(nonatomic)NSString* nativeXplacement;
 @property(nonatomic)NSString* nativeXappId;
+@property(nonatomic) BOOL   impressionFired;
+@property(nonatomic) BOOL   clickFired;
 
 @end
 
@@ -39,6 +41,9 @@
     if ((sessionID == nil) || ([sessionID length] == 0)) {
         [NativeXSDK initializeWithAppId:_nativeXappId];
     }
+    
+    _impressionFired = NO;
+    _clickFired = NO;
 
     // queue up fetch
     [NativeXSDK fetchAdWithName:_nativeXplacement andFetchDelegate:self];
@@ -55,6 +60,13 @@
     }
 
     [NativeXSDK showAdWithName:_nativeXplacement andShowDelegate:self rootViewController:rootViewController];
+}
+
+//---------------------------------------------------------------------------
+- (BOOL) enableAutomaticImpressionAndClickTracking
+{
+    // we're not doing automatic impression and click; so we're handing these explicitly
+    return NO;
 }
 
 #pragma mark NativeXAdEventDelegate protocol impl
@@ -104,9 +116,24 @@
     MPLogError(@"Ad failed to show with error=%@", error);
 }
 //---------------------------------------------------------------------------
+- (void) adImpressionConfirmed:(NSString *)placementName
+{
+    // since we're not doing automatic impression tracking, fire explicitly
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
+    if (_impressionFired == NO) {
+        [self.delegate trackImpression];
+        _impressionFired = YES;
+    }
+}
+//---------------------------------------------------------------------------
 - (void) userRedirected:(NSString *)placementName
 {
     if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxIstlAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
+    // since we're not doing automatic impression tracking, fire explicitly
+    if (_clickFired == NO) {
+        [self.delegate trackClick];
+        _clickFired = YES;
+    }
     [self.delegate interstitialCustomEventDidReceiveTapEvent:self];
     [self.delegate interstitialCustomEventWillLeaveApplication: self];
 }

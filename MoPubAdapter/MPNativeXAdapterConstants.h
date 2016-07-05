@@ -12,7 +12,7 @@
 #ifndef ENABLE_DEBUG_LOG
 #if DEBUG
 // debug setting
-#define ENABLE_DEBUG_LOG                NO
+#define ENABLE_DEBUG_LOG                YES
 #else 
 #define ENABLE_DEBUG_LOG                NO
 #endif  // debug

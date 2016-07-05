@@ -18,6 +18,8 @@
 
 @property(nonatomic)NSString* nativeXplacement;
 @property(nonatomic)NSString* nativeXappId;
+@property(nonatomic) BOOL   impressionFired;
+@property(nonatomic) BOOL   clickFired;
 
 @end
 
@@ -50,6 +52,9 @@
     }
     // make sure reward delegate is set
     [NativeXSDK setRewardDelegate:self];
+    
+    _impressionFired = NO;
+    _clickFired = NO;
     
     [NativeXSDK fetchAdWithName:_nativeXplacement andFetchDelegate:self];
 }
@@ -87,6 +92,12 @@
     //if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] --", __PRETTY_FUNCTION__, __LINE__);
 }
 
+//---------------------------------------------------------------------------
+- (BOOL) enableAutomaticImpressionAndClickTracking
+{
+    // we're not doing automatic impression and click; so we're handing these explicitly
+    return NO;
+}
 
 #pragma mark NativeXAdEventDelegate protocol impl
 
@@ -130,6 +141,7 @@
     // Call this method if a previously loaded rewarded video should no longer be eligible for presentation.
     [self.delegate rewardedVideoDidExpireForCustomEvent:self];
 }
+//---------------------------------------------------------------------------
 - (void) adShown:(NSString *)placementName
 {
     if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
@@ -145,9 +157,25 @@
     MPLogError(@"Ad failed to show with error=%@", error);
 }
 //---------------------------------------------------------------------------
+- (void) adImpressionConfirmed:(NSString *)placementName
+{
+    if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, placementName);
+    // since we're not doing automatic impression tracking, fire explicitly
+    if (_impressionFired == NO) {
+        [self.delegate trackImpression];
+        _impressionFired = YES;
+    }
+}
+//---------------------------------------------------------------------------
 - (void) userRedirected:(NSString *)placementName
 {
     if (ENABLE_DEBUG_LOG) MPLogInfo(@"[nxVidAdapter] -- %s [Line %d] -- placement=%@", __PRETTY_FUNCTION__, __LINE__, _nativeXplacement);
+    // since we're not doing automatic impression tracking, fire explicitly
+    if (_clickFired == NO) {
+        [self.delegate trackClick];
+        _clickFired = YES;
+    }
+    
     // Call this method when the rewarded video ad will cause the user to leave the application.
     [self.delegate rewardedVideoWillLeaveApplicationForCustomEvent:self];
     
