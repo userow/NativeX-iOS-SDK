@@ -9,8 +9,8 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5770DA3E-6D41-489F-9A30-DE683543E796",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "6D95832C804F476F13BE97CB968374463ECACC10" : "NativeX-iOS-SDK",
-    "95EAF2344EC14DEF04612318D6D1B7BF9B544DAE" : "iOS-SDK-Source"
+    "6D95832C804F476F13BE97CB968374463ECACC10" : "NativeX-iOS-SDK\/",
+    "95EAF2344EC14DEF04612318D6D1B7BF9B544DAE" : "iOS-SDK-Source\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "NativeXSimpleSampleApp",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,

@@ -22,7 +22,7 @@
     
     // Initialize the NativeX SDK
     [NativeXSDK enableDebugLog:YES]; // Disable in production
-    [NativeXSDK initializeWithAppId:appId];
+    [NativeXSDK initializeWithAppId:appId andPublisherUserId:@"samplePubUserId"];
     
     return YES;
 }
