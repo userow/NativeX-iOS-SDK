@@ -16,7 +16,7 @@ NativeX-iOS-SDK Ad SDK
                        DESC
 
   s.homepage         = 'https://github.com/userow/NativeX-iOS-SDK'
-  s.license          = { :type => 'MIT', :file => 'LICENSES/' }
+  s.license          = { :type => 'Apache', :file => 'licenses/all-licenses.txt' }
   s.author           = { 'userow' => 'userow@gmail.com' }
   s.source           = { :git => 'https://github.com/userow/NativeX-iOS-SDK.git', :tag => s.version.to_s }
 
